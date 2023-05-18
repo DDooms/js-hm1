@@ -1,8 +1,10 @@
 class Customer {
-    constructor(id, name, coordinates) {
-        this.id = id;
+    static nextId = 1;
+
+    constructor(name) {
+        this.id = Customer.nextId++;
         this.name = name;
-        this.coordinates = coordinates;
+        this.currentLocation = [Math.random() * 1000, Math.random() * 1000];
     }
 
     getId() {
@@ -14,21 +16,19 @@ class Customer {
     }
 
     getCoordinates() {
-        return this.coordinates;
+        return this.currentLocation;
     }
 
     setName(newName) {
         this.name = newName;
     }
 
-    // Method to calculate the distance between the customer and a given location
     calculateDistance(locationCoordinates) {
-        const [x1, y1] = this.coordinates;
+        const [x1, y1] = this.currentLocation;
         const [x2, y2] = locationCoordinates;
 
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
-
 }
 
 module.exports = Customer;

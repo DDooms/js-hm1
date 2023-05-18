@@ -1,60 +1,50 @@
 class Drone {
-    constructor(capacity, consumption) {
-        this.capacity = capacity;
-        this.consumption = consumption;
-        this.currentLocation = [0, 0]; // Initial location at [0, 0]
-        this.totalDeliveryTime = 0; // Total delivery time in minutes
+    constructor() {
+        this.capacity = 1;
+        this.consumption = 5;
+        this.currentLocation = [Math.random() * 1000, Math.random() * 1000];
+        this.totalDeliveryTime = 0;
+        this.batteryLife = 100; // Initial battery life at 100%
     }
 
     getCapacity() {
         return this.capacity;
     }
 
-    setCapacity(capacity) {
-        this.capacity = capacity;
-    }
-
-
     getConsumption() {
         return this.consumption;
-    }
-
-    setConsumption(consumption) {
-        this.consumption = consumption;
     }
 
     getCurrentLocation() {
         return this.currentLocation;
     }
 
-    setCurrentLocation(location) {
-        this.currentLocation = location;
-    }
-
     getTotalDeliveryTime() {
         return this.totalDeliveryTime;
     }
 
-    setTotalDeliveryTime(time) {
-        this.totalDeliveryTime = time;
+    getBatteryLife() {
+        return this.batteryLife;
     }
-
-    // Method for moving the drone to a target location
 
     move(targetLocation) {
-        const travelTime = Math.sqrt(
-            Math.pow(targetLocation[0] - this.currentLocation[0], 2) +
-            Math.pow(targetLocation[1] - this.currentLocation[1], 2)
-        ); // Assuming 1 unit distance = 1 minute travel time
+        const [x1, y1] = this.currentLocation;
+        const [x2, y2] = targetLocation;
 
-        // Update the current location and total delivery time
+        const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        const travelTime = distance; // 1 unit distance = 1 minute travel time
+
+        // Calculate battery consumption based on distance traveled
+        const batteryConsumption = distance / this.consumption; // 5 units drain 1% of battery life
+
+        // Update the current location, total delivery time, and battery life
         this.currentLocation = targetLocation;
         this.totalDeliveryTime += travelTime;
+        this.batteryLife -= batteryConsumption;
     }
 
-    // Method for waiting at a location
-
-    wait(minutes) {
+    wait() {
+        const minutes = 5
         this.totalDeliveryTime += minutes;
     }
 }

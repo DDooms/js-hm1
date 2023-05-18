@@ -19,10 +19,6 @@ class MapForOrders {
         this.warehouses.push(warehouse);
     }
 
-    removeWarehouse(warehouseId) {
-        this.warehouses = this.warehouses.filter((warehouse) => warehouse.id !== warehouseId);
-    }
-
     getWarehouseById(warehouseId) {
         return this.warehouses.find((warehouse) => warehouse.id === warehouseId);
     }
@@ -31,20 +27,12 @@ class MapForOrders {
         this.customers.push(customer);
     }
 
-    removeCustomer(customerId) {
-        this.customers = this.customers.filter((customer) => customer.id !== customerId);
-    }
-
     getCustomerById(customerId) {
         return this.customers.find((customer) => customer.id === customerId);
     }
 
     addProduct(product) {
         this.products.push(product);
-    }
-
-    removeProduct(productName) {
-        this.products = this.products.filter((product) => product.name !== productName);
     }
 
     getProductByName(productName) {

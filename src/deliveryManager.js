@@ -1,3 +1,5 @@
+const {estimateDeliveryTime} = require("./timeEstimator");
+
 class DeliveryManager {
     constructor() {
         this.drones = [];
@@ -40,18 +42,43 @@ class DeliveryManager {
         }
     }
 
-    // Other methods
-    assignRouteToDrone(route, drone) {
-        // Logic to assign a route to a specific drone
-    }
+    assignRouteToDrone(route, drones) {
+        // Find the closest drone to the warehouse and customer
+        let closestDrone;
+        let minDistance = Infinity;
 
-    optimizeRoutes() {
-        // Logic to optimize all routes in the delivery manager
+        for (const drone of drones) {
+            const distance = calculateDistance(drone, route); // Calculate the distance between the drone and the route
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestDrone = drone;
+            }
+        }
+
+        if (closestDrone) {
+            // Assign the route to the closest drone
+            closestDrone.assignRoute(route);
+        }
     }
 
     calculateTotalDeliveryTime() {
-        // Logic to calculate the total delivery time for all routes
+        let totalDeliveryTime = 0;
+
+        for (const route of this.routes) {
+            const routeDeliveryTime = estimateDeliveryTime(route, route.drone);
+            totalDeliveryTime += routeDeliveryTime;
+        }
+
+        return totalDeliveryTime;
     }
+}
+
+function calculateDistance(drone, route) {
+    // Logic to calculate the distance between the drone and the route
+    // This can be based on the coordinates of the drone, waypoints, and customer coordinates
+    // Implementation depends on the specific distance calculation method you want to use (e.g., Euclidean distance)
+    // You can use mathematical formulas or libraries like geolib for distance calculations
+    // Return the distance value
 }
 
 module.exports = DeliveryManager;
