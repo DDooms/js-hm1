@@ -1,4 +1,3 @@
-const ProductsEnum = require('./productsEnum');
 const Product = require('./product');
 const Order = require('./order');
 const Customer = require('./customer');
@@ -8,9 +7,9 @@ const MapForOrders = require('./mapForOrders');
 
 
 // Create orders
-const order1 = new Order([ProductsEnum.Tomatoes, ProductsEnum.Cucumber]);
-const order2 = new Order([ProductsEnum.Cheese]);
-const order3 = new Order([ProductsEnum.Tomatoes, ProductsEnum.Cucumber, ProductsEnum.Cheese]);
+const order1 = new Order([Product.Tomatoes, Product.Cucumber]);
+const order2 = new Order([Product.Cheese]);
+const order3 = new Order([Product.Tomatoes, Product.Cucumber, Product.Cheese]);
 
 
 // Create customers

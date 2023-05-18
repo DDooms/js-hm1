@@ -1,12 +1,16 @@
-const ProductsEnum = require('./productsEnum');
-const Product = require('./product');
+const ProductsEnum = require('./product');
 
 class Order {
     static nextId = 1;
 
     constructor(productList) {
         this.orderId = Order.nextId++;
-        this.productList = productList.map((productName) => new Product(productName));
+        this.productList = productList.map((productName) => {
+            if (!ProductsEnum[productName]) {
+                throw new Error(`Invalid product name: ${productName}`);
+            }
+            return productName;
+        });
     }
 
     getOrderId() {
