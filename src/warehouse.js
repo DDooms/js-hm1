@@ -1,32 +1,17 @@
 class Warehouse {
-    constructor(name, x, y) {
-        this.name = name;
-        this.x = x;
-        this.y = y;
+    static nextId = 1;
+
+    constructor() {
+        this.id = Warehouse.nextId++;
+        this.location = [Math.random() * 1000, Math.random() * 1000];
     }
 
-    getName() {
-        return this.name;
+    getId() {
+        return this.id;
     }
 
-    setName(name) {
-        this.name = name;
-    }
-
-    getX() {
-        return this.x;
-    }
-
-    setX(x) {
-        this.x = x;
-    }
-
-    getY() {
-        return this.y;
-    }
-
-    setY(y) {
-        this.y = y;
+    getLocation() {
+        return this.location;
     }
 }
 
