@@ -3,7 +3,10 @@ class Warehouse {
 
     constructor() {
         this.id = Warehouse.nextId++;
-        this.location = [Math.random() * 1000, Math.random() * 1000];
+        this.currentLocation = {
+            x: Math.floor(Math.random() * 1001),
+            y: Math.floor(Math.random() * 1001)
+        };
     }
 
     getId() {

@@ -4,7 +4,10 @@ class Customer {
     constructor(name) {
         this.id = Customer.nextId++;
         this.name = name;
-        this.currentLocation = [Math.random() * 1000, Math.random() * 1000];
+        this.currentLocation = {
+            x: Math.floor(Math.random() * 1001),
+            y: Math.floor(Math.random() * 1001)
+        };
     }
 
     getId() {

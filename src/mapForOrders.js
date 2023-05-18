@@ -1,10 +1,10 @@
 class MapForOrders {
-    constructor(topRightCoordinate, warehouses, customers, products, orders) {
+    constructor(topRightCoordinate, drones, warehouses, customers, orders) {
         this.topRightCoordinate = topRightCoordinate;
         this.warehouses = warehouses;
         this.customers = customers;
-        this.products = products;
         this.orders = orders;
+        this._drones = drones;
     }
 
     getTopRightCoordinate() {
@@ -23,6 +23,14 @@ class MapForOrders {
         return this.warehouses.find((warehouse) => warehouse.id === warehouseId);
     }
 
+    addDrone(drone) {
+        this.warehouses.push(drone);
+    }
+
+    getDronesById(dronesId) {
+        return this.warehouses.find((drone) => drone.id === dronesId);
+    }
+
     addCustomer(customer) {
         this.customers.push(customer);
     }
@@ -31,20 +39,8 @@ class MapForOrders {
         return this.customers.find((customer) => customer.id === customerId);
     }
 
-    addProduct(product) {
-        this.products.push(product);
-    }
-
-    getProductByName(productName) {
-        return this.products.find((product) => product.name === productName);
-    }
-
     addOrder(order) {
         this.orders.push(order);
-    }
-
-    removeOrder(orderId) {
-        this.orders = this.orders.filter((order) => order.id !== orderId);
     }
 
     getOrderById(orderId) {

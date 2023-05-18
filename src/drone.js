@@ -2,7 +2,10 @@ class Drone {
     constructor() {
         this.capacity = 1;
         this.consumption = 5;
-        this.currentLocation = [Math.random() * 1000, Math.random() * 1000];
+        this.currentLocation = {
+            x: Math.floor(Math.random() * 1001),
+            y: Math.floor(Math.random() * 1001)
+        };
         this.totalDeliveryTime = 0;
         this.batteryLife = 100; // Initial battery life at 100%
     }
