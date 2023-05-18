@@ -7,17 +7,6 @@ const MapForOrders = require("./mapForOrders")
 
 
 
-
-// DeliveryManager class
-class DeliveryManager {
-    // Add necessary methods and fields
-}
-
-// TimeEstimator class
-class TimeEstimator {
-    // Add necessary methods and fields
-}
-
 // Example usage
 const product1 = new Product("tomatoes");
 const product2 = new Product("cucumber");

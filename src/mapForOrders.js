@@ -7,8 +7,6 @@ class MapForOrders {
         this.orders = orders;
     }
 
-    // Getters and setters for individual properties
-
     getTopRightCoordinate() {
         return this.topRightCoordinate;
     }
@@ -16,8 +14,6 @@ class MapForOrders {
     setTopRightCoordinate(topRightCoordinate) {
         this.topRightCoordinate = topRightCoordinate;
     }
-
-    // Methods to interact with warehouses
 
     addWarehouse(warehouse) {
         this.warehouses.push(warehouse);
@@ -31,8 +27,6 @@ class MapForOrders {
         return this.warehouses.find((warehouse) => warehouse.id === warehouseId);
     }
 
-    // Methods to interact with customers
-
     addCustomer(customer) {
         this.customers.push(customer);
     }
@@ -45,8 +39,6 @@ class MapForOrders {
         return this.customers.find((customer) => customer.id === customerId);
     }
 
-    // Methods to interact with products
-
     addProduct(product) {
         this.products.push(product);
     }
@@ -58,8 +50,6 @@ class MapForOrders {
     getProductByName(productName) {
         return this.products.find((product) => product.name === productName);
     }
-
-    // Methods to interact with orders
 
     addOrder(order) {
         this.orders.push(order);

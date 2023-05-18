@@ -5,22 +5,18 @@ class Customer {
         this.coordinates = coordinates;
     }
 
-    // Getter for retrieving the customer's ID
     getId() {
         return this.id;
     }
 
-    // Getter for retrieving the customer's name
     getName() {
         return this.name;
     }
 
-    // Getter for retrieving the customer's coordinates
     getCoordinates() {
         return this.coordinates;
     }
 
-    // Setter for updating the customer's name
     setName(newName) {
         this.name = newName;
     }
@@ -33,7 +29,6 @@ class Customer {
         return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
 
-    // Add any additional methods or business logic relevant to the Customer class
 }
 
 module.exports = Customer;

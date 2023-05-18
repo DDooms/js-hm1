@@ -8,12 +8,10 @@ class Product {
         this.name = name;
     }
 
-    // Getter for name
     getName() {
         return this.name;
     }
 
-    // Setter for name
     setName(name) {
         if (!ProductsEnum[name]) {
             throw new Error(`Invalid product name: ${name}`);

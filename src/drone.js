@@ -6,8 +6,6 @@ class Drone {
         this.totalDeliveryTime = 0; // Total delivery time in minutes
     }
 
-    // Getter and setter for capacity
-
     getCapacity() {
         return this.capacity;
     }
@@ -16,7 +14,6 @@ class Drone {
         this.capacity = capacity;
     }
 
-    // Getter and setter for consumption
 
     getConsumption() {
         return this.consumption;
@@ -26,8 +23,6 @@ class Drone {
         this.consumption = consumption;
     }
 
-    // Getter and setter for current location
-
     getCurrentLocation() {
         return this.currentLocation;
     }
@@ -35,8 +30,6 @@ class Drone {
     setCurrentLocation(location) {
         this.currentLocation = location;
     }
-
-    // Getter and setter for total delivery time
 
     getTotalDeliveryTime() {
         return this.totalDeliveryTime;

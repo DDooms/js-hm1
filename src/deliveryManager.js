@@ -4,7 +4,6 @@ class DeliveryManager {
         this.routes = [];
     }
 
-    // Getters and setters
     getDrones() {
         return this.drones;
     }
@@ -21,7 +20,6 @@ class DeliveryManager {
         this.routes = routes;
     }
 
-    // Methods for managing drones
     addDrone(drone) {
         this.drones.push(drone);
     }
@@ -32,7 +30,6 @@ class DeliveryManager {
         }
     }
 
-    // Methods for managing routes
     addRoute(route) {
         this.routes.push(route);
     }

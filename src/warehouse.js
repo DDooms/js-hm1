@@ -5,7 +5,6 @@ class Warehouse {
         this.y = y;
     }
 
-    // Getter and setter for name
     getName() {
         return this.name;
     }
@@ -14,7 +13,6 @@ class Warehouse {
         this.name = name;
     }
 
-    // Getter and setter for x coordinate
     getX() {
         return this.x;
     }
@@ -23,7 +21,6 @@ class Warehouse {
         this.x = x;
     }
 
-    // Getter and setter for y coordinate
     getY() {
         return this.y;
     }
