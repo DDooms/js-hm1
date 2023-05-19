@@ -7,40 +7,53 @@ class DeliveryScheduler {
     constructor(warehouses, customers) {
         this.warehouses = warehouses;
         this.customers = customers;
+        this.drones = []; // Array to store the drones
     }
 
     calculateTotalDeliveryTime() {
         let totalDeliveryTime = 0;
         let batteryLife;
+        let dronesUsed = 0;
 
         for (const customer of this.customers) {
             // Find the nearest warehouse for the order
             const nearestWarehouse = this.findNearestWarehouse(customer.getCoordinates());
 
-            // Create a new drone for each order
-            const drone = new Drone();
+            // Get a drone for the warehouse (if available)
+            const drone = this.getDroneForWarehouse(nearestWarehouse);
 
-            drone.move(nearestWarehouse.getLocation()); // Move to the warehouse
-            drone.wait();
-            drone.move(customer.getCoordinates()); // Move to the customer
+            if (drone) {
+                drone.move(nearestWarehouse.getLocation()); // Move to the warehouse
+                drone.wait();
+                drone.move(customer.getCoordinates()); // Move to the customer
 
-            // Update the drone's battery life and total delivery time after waiting
-            totalDeliveryTime += drone.getTotalDeliveryTime();
-            batteryLife = drone.getBatteryLife();
+                // Update the drone's battery life and total delivery time after waiting
+                totalDeliveryTime += drone.getTotalDeliveryTime();
+                batteryLife = drone.getBatteryLife();
+                dronesUsed++;
+            }
         }
 
-        // Calculate hours, minutes, and seconds
-        const hours = Math.floor(totalDeliveryTime / 60);
-        const minutes = Math.floor(totalDeliveryTime % 60);
-        const seconds = Math.floor((totalDeliveryTime % 1) * 60);
+        console.log("Number of drones used:", dronesUsed);
+        console.log("Remaining battery life:", batteryLife.toFixed(2) + "%");
 
-        // Print the total delivery time in the desired format
-        console.log("Total delivery time:", hours, "hours,", minutes, "minutes,", seconds, "seconds");
-
-        console.log("Total battery left: " + batteryLife);
         return totalDeliveryTime;
     }
 
+    getDroneForWarehouse(warehouse) {
+        // Check if there is an available drone for the warehouse
+        for (const drone of this.drones) {
+            if (drone.getCurrentLocation().x === warehouse.getLocation().x && drone.getCurrentLocation().y === warehouse.getLocation().y) {
+                return drone; // Return the available drone
+            }
+        }
+
+        // If no available drone found, create a new drone for the warehouse
+        const newDrone = new Drone();
+        newDrone.move(warehouse.getLocation()); // Move the new drone to the warehouse
+        this.drones.push(newDrone); // Add the new drone to the array of drones
+        return newDrone;
+    }
 
     findNearestWarehouse(customerLocation) {
         let nearestWarehouse;
