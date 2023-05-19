@@ -30,21 +30,26 @@ class Drone {
         return this.batteryLife;
     }
 
+    calculateDistance(location1, location2) {
+        const x1 = location1.x;
+        const y1 = location1.y;
+        const x2 = location2.x;
+        const y2 = location2.y;
+
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+
     move(targetLocation) {
-        const [x1, y1] = this.currentLocation;
-        const [x2, y2] = targetLocation;
+        const distance = this.calculateDistance(this.currentLocation, targetLocation);
+        const travelTime = distance / 100; // 100 unit distance = 1 minute travel time
+        const batteryConsumption = distance / 50; // 50 units drain 1% of battery life
 
-        const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-        const travelTime = distance; // 1 unit distance = 1 minute travel time
-
-        // Calculate battery consumption based on distance traveled
-        const batteryConsumption = distance / this.consumption; // 5 units drain 1% of battery life
-
-        // Update the current location, total delivery time, and battery life
         this.currentLocation = targetLocation;
         this.totalDeliveryTime += travelTime;
         this.batteryLife -= batteryConsumption;
     }
+
 
     wait() {
         const minutes = 5

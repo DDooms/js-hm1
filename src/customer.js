@@ -1,13 +1,14 @@
 class Customer {
     static nextId = 1;
 
-    constructor(name) {
+    constructor(name, orders) {
         this.id = Customer.nextId++;
         this.name = name;
         this.currentLocation = {
             x: Math.floor(Math.random() * 1001),
-            y: Math.floor(Math.random() * 1001)
+            y: Math.floor(Math.random() * 1001),
         };
+        this.orders = orders;
     }
 
     getId() {
@@ -26,11 +27,12 @@ class Customer {
         this.name = newName;
     }
 
-    calculateDistance(locationCoordinates) {
-        const [x1, y1] = this.currentLocation;
-        const [x2, y2] = locationCoordinates;
+    addOrder(order) {
+        this.orders.push(order);
+    }
 
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    getOrders() {
+        return this.orders;
     }
 }
 

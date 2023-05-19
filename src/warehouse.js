@@ -14,7 +14,7 @@ class Warehouse {
     }
 
     getLocation() {
-        return this.location;
+        return this.currentLocation;
     }
 }
 

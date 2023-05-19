@@ -1,49 +1,30 @@
-const Product = require('./product');
-const Order = require('./order');
-const Customer = require('./customer');
-const Drone = require('./drone');
-const Warehouse = require('./warehouse');
-const MapForOrders = require('./mapForOrders');
+const Warehouse = require('./Warehouse');
+const Customer = require('./Customer');
+const Drone = require('./Drone');
+const Order = require('./Order');
+const Product = require('./product')
+const DeliveryScheduler = require('./DeliveryScheduler');
 
-
-// Create orders
-const order1 = new Order([Product.Tomatoes, Product.Cucumber]);
-const order2 = new Order([Product.Cheese]);
-const order3 = new Order([Product.Tomatoes, Product.Cucumber, Product.Cheese]);
-
-
-// Create customers
-const customer1 = new Customer('John');
-const customer2 = new Customer('Alice');
-const customer3 = new Customer('Bob');
-
-// Create warehouses
+// Set up the necessary data
 const warehouse1 = new Warehouse();
 const warehouse2 = new Warehouse();
-const warehouse3 = new Warehouse();
 
-// Create drones
-const drone1 = new Drone();
-const drone2 = new Drone();
-const drone3 = new Drone();
+const order1 = new Order([Product.Ham, Product.Eggs])
+const order2 = new Order([Product.Milk, Product.Tomatoes])
 
-// Create the map for orders
-const topRightCoordinate = [1000, 1000];
-const mapForOrders = new MapForOrders(topRightCoordinate, [], [], [], []);
+const customer1 = new Customer("Customer 1", order1);
+const customer2 = new Customer("Customer 2", order2);
 
-// Add warehouses, customers, products, and orders to the map
-mapForOrders.addWarehouse(warehouse1);
-mapForOrders.addWarehouse(warehouse2);
-mapForOrders.addWarehouse(warehouse3);
-mapForOrders.addDrone(drone1);
-mapForOrders.addDrone(drone2);
-mapForOrders.addDrone(drone3);
-mapForOrders.addCustomer(customer1);
-mapForOrders.addCustomer(customer2);
-mapForOrders.addCustomer(customer3);
-mapForOrders.addOrder(order1);
-mapForOrders.addOrder(order2);
-mapForOrders.addOrder(order3);
+const warehouses = [warehouse1, warehouse2];
+const customers = [customer1, customer2];
 
-// Output the map for orders
-console.log(mapForOrders);
+
+// Create an instance of the DeliveryScheduler class
+const deliveryScheduler = new DeliveryScheduler(warehouses, customers);
+
+// Calculate the total delivery time
+const totalDeliveryTime = deliveryScheduler.calculateTotalDeliveryTime();
+
+// Print the total delivery time
+console.log("Total delivery time:", totalDeliveryTime, "minutes");
+
