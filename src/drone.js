@@ -1,5 +1,7 @@
 class Drone {
+    static nextId = 1;
     constructor() {
+        this.id = Drone.nextId++;
         this.capacity = 1;
         this.consumption = 5;
         this.currentLocation = {

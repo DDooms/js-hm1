@@ -7,12 +7,11 @@ class DeliveryScheduler {
     constructor(warehouses, customers) {
         this.warehouses = warehouses;
         this.customers = customers;
-        this.drones = []; // Array to store the drones
+        this.drones = [];
     }
 
     calculateTotalDeliveryTime() {
         let totalDeliveryTime = 0;
-        let batteryLife;
         let dronesUsed = 0;
 
         for (const customer of this.customers) {
@@ -28,17 +27,23 @@ class DeliveryScheduler {
                 drone.move(customer.getCoordinates()); // Move to the customer
 
                 // Update the drone's battery life and total delivery time after waiting
+                const batteryLife = drone.getBatteryLife();
+
+                console.log("Drone", drone.id);
+                console.log("Remaining battery life:", batteryLife.toFixed(2) + "%");
+                console.log("Time accumulated:", drone.getTotalDeliveryTime(), "minutes");
+                console.log("------------");
+
                 totalDeliveryTime += drone.getTotalDeliveryTime();
-                batteryLife = drone.getBatteryLife();
                 dronesUsed++;
             }
         }
 
         console.log("Number of drones used:", dronesUsed);
-        console.log("Remaining battery life:", batteryLife.toFixed(2) + "%");
 
         return totalDeliveryTime;
     }
+
 
     getDroneForWarehouse(warehouse) {
         // Check if there is an available drone for the warehouse
